@@ -31,6 +31,14 @@ function shuffle(array) {
 
 let shuffleCardList = shuffle(cardsList);
 
+let movesCounter = 0;
+let timerStart; // Starting time
+let timerEnd; // End time
+let timerTick; // Timer speed
+let playerStars = 3; // Players life’s / rating
+let openCardList = []; // Opened Card List
+let matchedCardList = []; // Card list that matched
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
