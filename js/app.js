@@ -29,9 +29,8 @@ function shuffle(array) {
     return array;
 }
 
-let shuffleCardList = shuffle(cardsList);
 
-let movesCounter = 0;
+let movesCounter = 0; // how much moves we will have
 let timerStart; // Starting time
 let timerEnd; // End time
 let timerTick; // Timer speed
@@ -39,6 +38,18 @@ let playerStars = 3; // Players life’s / rating
 let openCardList = []; // Opened Card List
 let matchedCardList = []; // Card list that matched
 
+const allCards = document.querySelectorAll('.deck li');
+
+let shuffleCardList = shuffle(cardsList);
+
+function addRandomSymbolToCard(array) {
+        let shuffleCardList = shuffle(cardsList);
+        for (i = 0; i < array.length; i++) {
+            array[i].firstElementChild.className = shuffleCardList[i];
+        }
+}
+
+let newDeck = addRandomSymbolToCard(allCards);
 
 /*
  * set up the event listener for a card. If a card is clicked:
