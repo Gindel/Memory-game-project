@@ -1,18 +1,20 @@
-/*
- * Create a list that holds all of your cards
- */
-
+// List of my cards
  const cardsList = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
         "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
         "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+let movesCounter = 0; // how much moves we will have
+let timerStart; // Starting time
+let timerEnd; // End time
+let timerTick; // Timer speed
+let playerStars = 3; // Players life’s / rating
+let openCardList = []; // Opened Card List
+let matchedCardList = []; // Card list that matched
+
+const restart = document.querySelector('.restart');
+const allCards = document.querySelectorAll('.deck li'); // Creating const for my allCards
+const deck = document.querySelector('.deck'); // Creating const for deck
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -29,27 +31,48 @@ function shuffle(array) {
     return array;
 }
 
+let shuffleCardList = shuffle(cardsList); // Creating shuffled cardList
 
-let movesCounter = 0; // how much moves we will have
-let timerStart; // Starting time
-let timerEnd; // End time
-let timerTick; // Timer speed
-let playerStars = 3; // Players life’s / rating
-let openCardList = []; // Opened Card List
-let matchedCardList = []; // Card list that matched
-
-const allCards = document.querySelectorAll('.deck li');
-
-let shuffleCardList = shuffle(cardsList);
-
+//add random card
 function addRandomSymbolToCard(array) {
-        let shuffleCardList = shuffle(cardsList);
         for (i = 0; i < array.length; i++) {
             array[i].firstElementChild.className = shuffleCardList[i];
         }
 }
 
-let newDeck = addRandomSymbolToCard(allCards);
+addRandomSymbolToCard(allCards);
+
+function showSymbol(evt) {
+        evt.target.className = 'card open show';
+        // evt.target.isClicked = 1;
+
+    }
+
+deck.addEventListener('click', function (evt) {
+    showSymbol(evt);
+});
+
+
+// function game(item){
+//     deck.innerHTML += '<li class="card"><span class="lid"></span><i class="item"></i></li>';
+//     document.querySelector('.item').className = item;
+// }
+
+// // TODO: Make loop of cards from random array with use function 'game'
+// shuffleCardList.forEach(game);
+
+// function reload(){
+//     window.location.reload();
+
+//     // TODO: Make loop of cards from random array with use function 'game'
+//     shuffleCardList.forEach(game);
+// }
+
+// // TODO: add event listener 'click' to element which is handle in variable with name 'restart' which call to function reload
+// restart.addEventListener('onclick', reload, false);
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
