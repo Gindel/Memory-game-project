@@ -12,7 +12,7 @@ let playerStars = 3; // Players life’s / rating
 let openCardList = []; // Opened Card List
 let matchedCardList = []; // Card list that matched
 
-const restart = document.querySelector('.restart');
+const restart = document.querySelector('.restart'); // Creating const for restart button
 const allCards = document.querySelectorAll('.deck li'); // Creating const for my allCards
 const deck = document.querySelector('.deck'); // Creating const for deck
 
@@ -31,46 +31,39 @@ function shuffle(array) {
     return array;
 }
 
-let shuffleCardList = shuffle(cardsList); // Creating shuffled cardList
+addRandomSymbolToCard(allCards);
 
-//add random card
-function addRandomSymbolToCard(array) {
+// Game functions
+
+function addRandomSymbolToCard(array) {  //Add random symbol to our deck li child
+        let shuffleCardList = shuffle(cardsList); // Each time we creating shuffled cardList
         for (i = 0; i < array.length; i++) {
             array[i].firstElementChild.className = shuffleCardList[i];
         }
 }
 
-addRandomSymbolToCard(allCards);
-
-function showSymbol(evt) {
+function showSymbol(evt) { //Showing symbol
         evt.target.className = 'card open show';
         // evt.target.isClicked = 1;
+}
 
-    }
+function resetGame() { //Reseting game
+    for (let card of allCards) { //Closing all cards
+            card.className = "card close";
+            // card.isClicked = 0;
+        }
+    addRandomSymbolToCard(allCards); //Shuffling all cards
+}
 
-deck.addEventListener('click', function (evt) {
+//Game event listeners
+
+deck.addEventListener('click', function (evt) { //showing card
     showSymbol(evt);
 });
 
-
-// function game(item){
-//     deck.innerHTML += '<li class="card"><span class="lid"></span><i class="item"></i></li>';
-//     document.querySelector('.item').className = item;
-// }
-
-// // TODO: Make loop of cards from random array with use function 'game'
-// shuffleCardList.forEach(game);
-
-// function reload(){
-//     window.location.reload();
-
-//     // TODO: Make loop of cards from random array with use function 'game'
-//     shuffleCardList.forEach(game);
-// }
-
-// // TODO: add event listener 'click' to element which is handle in variable with name 'restart' which call to function reload
-// restart.addEventListener('onclick', reload, false);
-
+restart.addEventListener('click', function () { //reseting game
+        resetGame();
+})
 
 
 
