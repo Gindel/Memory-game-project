@@ -44,7 +44,7 @@ function addRandomSymbolToCard(array) {  //Add random symbol to our deck li chil
 
 function showSymbol(evt) { //Showing symbol
         evt.target.className = 'card open show';
-        // evt.target.isClicked = 1;
+        // evt.target.isClicked = 1; with this we will check if card clicked twice
 }
 
 function resetGame() { //Reseting game
@@ -64,6 +64,9 @@ deck.addEventListener('click', function (evt) { //showing card
 restart.addEventListener('click', function () { //reseting game
         resetGame();
 })
+
+/* check if card 1 = card 2 >leave open
+    else cards closed
 
 
 
