@@ -12,6 +12,8 @@ let playerStars = 3; // Players life’s / rating
 let openCardList = []; // Opened Card List
 let matchedCardList = []; // Card list that matched
 
+const movesElement = document.querySelector('.moves');
+const startMoves = "0 Moves";
 const restart = document.querySelector('.restart'); // Creating const for restart button
 const allCards = document.querySelectorAll('.deck li'); // Creating const for my allCards
 const deck = document.querySelector('.deck'); // Creating const for deck
@@ -40,10 +42,15 @@ function addRandomSymbolToCard(array) {  //Add random symbol to our deck li chil
         for (i = 0; i < array.length; i++) {
             array[i].firstElementChild.className = shuffleCardList[i];
         }
+
+        movesElement.innerHTML = startMoves;
 }
 
 function showSymbol(evt) { //Showing symbol
         evt.target.className = 'card open show';
+        movesCounter += 1;
+        movesElement.innerHTML = movesCounter + " Moves";
+
         // evt.target.isClicked = 1; with this we will check if card clicked twice
 }
 
