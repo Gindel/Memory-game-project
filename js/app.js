@@ -5,21 +5,33 @@
 
 
 let movesCounter = 0; // how much moves we will have
-let timerStart; // Starting time
-let timerEnd; // End time
-let timerTick; // Timer speed
+let timerEnd; // End time !! not using now
+let totalSeconds = 0; // Timer tick start
 let playerStars = 3; // Players life’s / rating
 let openCardList = []; // Opened Card List
 let matchedCardList = []; // Card list that matched
 
-const movesElement = document.querySelector('.moves');
-const startMoves = "0 Moves";
-const restart = document.querySelector('.restart'); // Creating const for restart button
-const allCards = document.querySelectorAll('.deck li'); // Creating const for my allCards
-const deck = document.querySelector('.deck'); // Creating const for deck
+// CREATING CONST FOR GAME
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+const minutesLabel = document.getElementById("minutes");
+const secondsLabel = document.getElementById("seconds"); 
+const timer = document.querySelector('.timer');
+const movesElement = document.querySelector('.moves'); 
+const startMoves = "0 Moves";
+const restart = document.querySelector('.restart');
+const allCards = document.querySelectorAll('.deck li');
+const deck = document.querySelector('.deck');
+
+//GLOBAL FUNCTION THAT WE CALL AT PAGE START
+
+function game() {
+    addRandomSymbolToCard(allCards);
+    setInterval(setTime, 1000); 
+}
+
+// Game functions
+
+function shuffle(array) { // Shuffle function from http://stackoverflow.com/a/2450976
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -33,16 +45,12 @@ function shuffle(array) {
     return array;
 }
 
-addRandomSymbolToCard(allCards);
-
-// Game functions
-
 function addRandomSymbolToCard(array) {  //Add random symbol to our deck li child
         let shuffleCardList = shuffle(cardsList); // Each time we creating shuffled cardList
         for (i = 0; i < array.length; i++) {
             array[i].firstElementChild.className = shuffleCardList[i];
         }
-
+        // timer.innerHTML = timerStart;
         movesElement.innerHTML = startMoves;
 }
 
@@ -53,6 +61,25 @@ function showSymbol(evt) { //Showing symbol
 
         // evt.target.isClicked = 1; with this we will check if card clicked twice
 }
+
+// Timer function's
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+// Timer function end
 
 function resetGame() { //Reseting game
     for (let card of allCards) { //Closing all cards
