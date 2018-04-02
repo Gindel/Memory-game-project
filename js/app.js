@@ -26,7 +26,7 @@ const deck = document.querySelector('.deck');
 
 function game() {
     addRandomSymbolToCard(allCards);
-    setInterval(setTime, 1000); 
+    setInterval(setTime, 1000);
 }
 
 // Game functions
@@ -47,9 +47,10 @@ function shuffle(array) { // Shuffle function from http://stackoverflow.com/a/24
 
 function addRandomSymbolToCard(array) {  //Add random symbol to our deck li child
         let shuffleCardList = shuffle(cardsList); // Each time we creating shuffled cardList
-        for (i = 0; i < array.length; i++) {
-            array[i].firstElementChild.className = shuffleCardList[i];
+        for (i = 0; i < array.length; i++) { //New JS syntax  TODO
+            array[i].firstElementChild.className = shuffleCardList[i] + " closed";
         }
+
         // timer.innerHTML = timerStart;
         movesElement.innerHTML = startMoves;
 }
@@ -87,13 +88,22 @@ function resetGame() { //Reseting game
             // card.isClicked = 0;
         }
     addRandomSymbolToCard(allCards); //Shuffling all cards
+    document.getElementById("minutes").innerHTML = "00";
+    document.getElementById("seconds").innerHTML = "00";
+    totalSeconds = 0;
 }
 
 //Game event listeners
 
-deck.addEventListener('click', function (evt) { //showing card
-    showSymbol(evt);
-});
+deck.addEventListener('click', function (evt) {
+    if (!(evt.target.className === 'deck')) {
+        showSymbol(evt);
+    }
+})
+
+// card.addEventListener('click', function (evt) { //showing card
+//     showSymbol(evt);
+// });
 
 restart.addEventListener('click', function () { //reseting game
         resetGame();
