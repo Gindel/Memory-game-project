@@ -11,6 +11,9 @@
 <body>
 
     <div class="container">
+
+        <div class="popup-start"></div>
+
         <header>
             <h1>Matching Game</h1>
         </header>
@@ -22,10 +25,12 @@
         		<i class="fa fa-star"></i>
         	</div>
 
-        	<span class="moves"></span>
+        	<span class="moves">0 Moves</span>
             <button onclick="game()">Start</button>
             
-            <div class="timer"><label id="minutes">00</label>:<label id="seconds">00</label></div>
+            <div class="timer">
+                <label id="minutes">00</label>:<label id="seconds">00</label>
+            </div>
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>

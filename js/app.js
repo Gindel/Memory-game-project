@@ -11,13 +11,17 @@ let playerStars = 3; // Players life’s / rating
 let openCardList = []; // Opened Card List
 let matchedCardList = []; // Card list that matched
 let stars = document.querySelector('.stars');
+let allStars = document.querySelectorAll(".stars i");
 
 // CREATING CONST FOR GAME
 
 const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds"); 
 const timer = document.querySelector('.timer');
-const movesElement = document.querySelector('.moves'); 
+const movesElement = document.querySelector('.moves');
+
+
+
 const startMoves = "0 Moves";
 const restart = document.querySelector('.restart');
 const allCards = document.querySelectorAll('.deck li');
@@ -100,6 +104,15 @@ function resetGame() { //Reseting game
     document.getElementById("minutes").innerHTML = "00";
     document.getElementById("seconds").innerHTML = "00";
     totalSeconds = 0;
+    movesCounter = 0;
+
+    for (i = 0; i < allStars.length; i++) { //New JS syntax  TODO
+            allStars[i].className = "fa fa-star";
+        }
+//     for (let star of stars) { //Closing all cards
+//             star.className = "fa fa-star";
+//             // card.isClicked = 0;
+//         }
 }
 
 //Game event listeners
@@ -109,10 +122,6 @@ deck.addEventListener('click', function (evt) {
         showSymbol(evt);
     }
 })
-
-// card.addEventListener('click', function (evt) { //showing card
-//     showSymbol(evt);
-// });
 
 restart.addEventListener('click', function () { //reseting game
         resetGame();
