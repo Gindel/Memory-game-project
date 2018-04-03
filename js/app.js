@@ -10,6 +10,7 @@ let totalSeconds = 0; // Timer tick start
 let playerStars = 3; // Players life’s / rating
 let openCardList = []; // Opened Card List
 let matchedCardList = []; // Card list that matched
+let stars = document.querySelector('.stars');
 
 // CREATING CONST FOR GAME
 
@@ -59,6 +60,14 @@ function showSymbol(evt) { //Showing symbol
         evt.target.className = 'card open show';
         movesCounter += 1;
         movesElement.innerHTML = movesCounter + " Moves";
+
+        if (movesCounter === 16) {
+            stars.lastElementChild.className = 'fa fa-star-o';
+        } else if (movesCounter === 24) {
+            stars.lastElementChild.previousElementSibling.className = 'fa fa-star-o';
+        } else if(movesCounter === 32) {
+            stars.firstElementChild.className = 'fa fa-star-o';
+        }
 
         // evt.target.isClicked = 1; with this we will check if card clicked twice
 }
