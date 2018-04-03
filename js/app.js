@@ -19,9 +19,6 @@ const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds"); 
 const timer = document.querySelector('.timer');
 const movesElement = document.querySelector('.moves');
-
-
-
 const startMoves = "0 Moves";
 const restart = document.querySelector('.restart');
 const allCards = document.querySelectorAll('.deck li');
