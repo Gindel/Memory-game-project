@@ -140,3 +140,17 @@ restart.addEventListener('click', function () { //reseting game
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+/* NNNNNNNNNNNNEEEEEEEEEEEEEEEWWWWWWWWWWWWWWW */
+window.onload = function () {
+    var popup = document.getElementById("popup");/* Cache the popup. */
+    popup.classList.remove("hidden");/* Show the popup. */
+    setTimeout(()=>popup.classList.add("fade-in"));/* Fade the popup in */
+    document.getElementById("popup").onclick = function () {/* Close the popup when a city is selected. */ 
+        setTimeout(()=>popup.classList.add("hidden"), 300);/* Hide the popup. */
+        game();
+  };
+  document.getElementsByTagName("BODY").onclick = function () {/* Close the popup when a city is selected. */ 
+        setTimeout(()=>popup.classList.add("hidden"), 300);/* Hide the popup. */
+        game();
+  };
+};
